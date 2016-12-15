@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerTrue : MonoBehaviour {
     public GameObject sphere;
     private double chrono;
+    private int nombreEnfant;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,8 +15,8 @@ public class TriggerTrue : MonoBehaviour {
         chrono += Time.deltaTime;
         if (chrono > 0.3)
         {
-            sphere.transform.position = this.gameObject.transform.GetChild(0).gameObject.transform.position;
-            //nombreEnfant++;
+            sphere.transform.position = this.gameObject.transform.GetChild(nombreEnfant).gameObject.transform.position;
+            nombreEnfant++;
             chrono = 0;
         }
     }
