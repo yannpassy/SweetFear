@@ -149,7 +149,7 @@ public class MoveTP : MonoBehaviour
         else if (etat == Etat.teleportation)
         {
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
-            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 1.5f, this.transform.position.z);
+            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
             etat = Etat.fadeIn;
         }
         else if (etat == Etat.fadeIn)
