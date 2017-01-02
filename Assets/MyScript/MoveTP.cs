@@ -149,7 +149,7 @@ public class MoveTP : MonoBehaviour
         else if (etat == Etat.teleportation)
         {
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
-            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f, this.transform.position.z);
+            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
             etat = Etat.fadeIn;
         }
         else if (etat == Etat.fadeIn)
@@ -167,7 +167,7 @@ public class MoveTP : MonoBehaviour
         else if (etat == Etat.demiTour)
         {
             this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
-            //cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
+            cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
             chrono = 0;
             etat = Etat.Look;
         }
