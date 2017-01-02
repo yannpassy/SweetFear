@@ -166,10 +166,22 @@ public class MoveTP : MonoBehaviour
         }
         else if (etat == Etat.demiTour)
         {
-            this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
-            cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
-            chrono = 0;
-            etat = Etat.Look;
+            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+            chronoFadeOut += Time.deltaTime;
+            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+            {
+                cam.GetComponent<OVRScreenFadeOut>().enabled = false;
+                this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
+                etat = Etat.fadeIn;
+                chronoFadeOut = 0;
+            }
+
+            // == le code original
+            //this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
+            //cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
+            //chrono = 0;
+            //etat = Etat.Look;
         }
 
 
