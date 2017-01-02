@@ -39,7 +39,7 @@ public class MoveTP : MonoBehaviour
     void Update()
     {
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera à la place de Input.mousePosition
         RaycastHit hit;
         dist = Vector3.Distance(anciennePositionCube, cube.transform.position);
 
