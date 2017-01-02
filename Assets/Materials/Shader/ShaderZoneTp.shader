@@ -6,9 +6,10 @@
 		Tags { "RenderType"="Opaque" "Queue" = "Geometry+1" }
 
 		LOD 200
-		/*ColorMask RGB
+		ColorMask RGB
 		Cull Front 
-		ZTest Always */ 
+		ZWrite Off
+		ZTest Greater  
 		Stencil{
 			Ref 1
 			Comp equal
@@ -26,6 +27,8 @@
 		struct Input {
 			float2 uv_MainTex;
 			float4 color : COLOR;
+			float4 screenPos;
+			float eyeDepth;
 		};
 
 		half _Glossiness;
@@ -33,9 +36,11 @@
 		fixed4 _Color;
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			o.Albedo = _Color.rgb;
-			o.Normal = half3(0, 0, -1);
-			o.Alpha = 1;
+		// il faut récupéré les depth 	
+		o.Albedo = _Color.rgb;
+		o.Normal = half3(0, 0, -1);
+		o.Alpha = 1;
+				
 		}
 		ENDCG
 	}
