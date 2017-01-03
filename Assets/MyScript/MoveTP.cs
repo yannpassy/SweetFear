@@ -25,10 +25,11 @@ public class MoveTP : MonoBehaviour
     public GameObject cube;
     private GameObject vide;
     private float dist;
-    private float distZoneTp = 15.0f;
+    private float distZoneTp = 13.0f;
 
     void Start()
     {
+        Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
@@ -38,6 +39,9 @@ public class MoveTP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //affiche la souris
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            Screen.lockCursor = false;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
@@ -90,7 +94,7 @@ public class MoveTP : MonoBehaviour
         }
         else if (etat == Etat.AnalyseCommande)
         {
-            Debug.Log(tagTouchee);
+            
             if (tagTouchee == "terrain")
             {
                 etat = Etat.fadeOut;
@@ -149,7 +153,11 @@ public class MoveTP : MonoBehaviour
         else if (etat == Etat.teleportation)
         {
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
+
+            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
+
             cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
+
             etat = Etat.fadeIn;
         }
         else if (etat == Etat.fadeIn)
@@ -198,5 +206,6 @@ public class MoveTP : MonoBehaviour
             SceneManager.LoadScene("Fin");
         }
     }
+
 
 }

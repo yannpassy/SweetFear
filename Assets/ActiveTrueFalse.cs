@@ -18,12 +18,12 @@ public class ActiveTrueFalse : MonoBehaviour {
         if (EnfantActuel < nombreEnfant)
         {
             chrono += Time.deltaTime;
-            if (chrono > 0.3)
+            if (chrono > 0.1)
             {
                 GameObject monGameObject = transform.GetChild(EnfantActuel).gameObject;
                 if (monGameObject.tag == "fragment")
                 {
-                    ChangeGameObjectKinematic(monGameObject, false);
+                    ChangeGameObjectKinematic(monGameObject, false, true);
                 }
                 chrono = 0;
                 EnfantActuel++;
@@ -31,11 +31,12 @@ public class ActiveTrueFalse : MonoBehaviour {
         }
     }
 
-    void ChangeGameObjectKinematic(GameObject monGameObject, bool kinematicValue) {
+    void ChangeGameObjectKinematic(GameObject monGameObject, bool kinematicValue, bool IsTriggerValue) {
         Rigidbody rb = monGameObject.GetComponent<Rigidbody>();
         if (rb)
         {
             rb.isKinematic = kinematicValue;
+            monGameObject.GetComponent<MeshCollider>().isTrigger = IsTriggerValue;
         }
 
     }
